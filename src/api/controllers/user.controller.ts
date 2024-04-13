@@ -6,7 +6,7 @@ export const getUsers = async (req: Request, res: Response) => {
     const users = await User.find();
     res.status(200).json(users);
   } catch (error) {
-    res.status(500).send("Error al crear el usuario");
+    res.status(500).send("Error");
   }
 };
 
