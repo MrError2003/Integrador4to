@@ -2,6 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 import bcrypt from "bcrypt";
 
 interface IPost extends Document {
+    idUser: string;
     title: string;
     content: string;
     image: string;
@@ -10,6 +11,7 @@ interface IPost extends Document {
 }
 
 const postSchema = new Schema<IPost>({
+    idUser: { type: String, required: true },
     title: { type: String, required: true },
     content: { type: String, required: true },
     image: { type: String },
