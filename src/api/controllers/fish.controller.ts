@@ -21,6 +21,17 @@ export const createFish = async (req: Request, res: Response) => {
   }
 };
 
+export const createManyFish = async (req: Request, res: Response) => {
+  try {
+    const fishes = req.body; // Ahora fishes contiene un array de objetos, cada uno representando un pez
+    const createdFishes = await Fish.insertMany(fishes); // Usamos insertMany para crear múltiples peces
+    res.status(201).json(createdFishes); // Devolvemos los peces creados
+  } catch (error) {
+    console.error("Error al crear las especies:", error); // Imprimimos el error en la consola para debugging
+    res.status(500).send("Error al crear la especie");
+  }
+};
+
 export const getFish = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
@@ -51,3 +62,5 @@ export const deleteFish = async (req: Request, res: Response) => {
     return res.status(404).send("Especie no encontrada");
   }
 };
+
+

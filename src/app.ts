@@ -39,8 +39,8 @@ app.get("/", (req, res) => {
 import apiRoutes from "./api/routes/api.routes";
 app.use("/api", apiRoutes);
 
-// import pagesRoutes from "./pages/routes/pages.routes";
-// app.use("/", pagesRoutes);
+import pagesRoutes from "./pages/routes/pages.routes";
+app.use("/", pagesRoutes);
 
 // Iniciar el servidor
 const port = process.env.PORT || 3000;
