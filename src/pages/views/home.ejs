@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <%- include('./layouts/head'); %>
 </head>
 
 <body>
@@ -13,6 +12,44 @@
     <header class="bg-white">
         <%- include('./layouts/header'); %>
     </header>
+
+    <!-- Seccion tarjetas para publicaciones -->
+
+    <div class="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
+        <div class="grid gap-8 lg:grid-cols-3 sm:max-w-sm sm:mx-auto lg:max-w-full">
+    
+            <% if (Array.isArray(posts) && posts.length > 0) { %>
+                <% posts.forEach(post => { %>
+
+                    <div class="overflow-hidden transition-shadow duration-300 bg-white rounded shadow-sm">
+                        <img src="<%= post.image %>" class="object-cover w-full h-64" alt="" />
+                        <div class="p-5 border border-t-0">
+                            <p class="mb-3 text-xs font-semibold tracking-wide uppercase">
+                                <span class="text-gray-600"><%= post.createdAt.toDateString() %></span>
+                            </p>
+                            <a href="/" aria-label="Category" title="<%= post.title %>"
+                                class="inline-block mb-3 text-2xl font-bold leading-5 transition-colors duration-200 hover:text-deep-purple-accent-700"><%= post.title %></a>
+                            <p class="mb-2 text-gray-700">
+                                <%= post.content %>
+                            </p>
+                            <a href="/" aria-label=""
+                                class="inline-flex items-center font-semibold transition-colors duration-200 text-deep-purple-accent-400 hover:text-deep-purple-800">Learn
+                                more</a>
+                        </div>
+                    </div>
+
+                <% }); %>
+            <% } else { %>
+                <div class="col-span-3">
+                    <p>No posts found.</p>
+                </div>
+            <% } %>
+    
+        </div>
+    </div>
+
+    <!-- Termina seccion tarjetas de publicaciones -->
+
     <main>
         <section class="bg-gray-900 text-white">
             <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">

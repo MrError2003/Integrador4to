@@ -1,5 +1,4 @@
 import mongoose, { Schema, Document } from "mongoose";
-import bcrypt from "bcrypt";
 
 interface IPost extends Document {
     idUser: string;
@@ -20,3 +19,4 @@ const postSchema = new Schema<IPost>({
 });
 
 export default mongoose.model<IPost>("Post", postSchema);
+export { IPost };   
