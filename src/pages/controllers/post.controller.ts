@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
-import PostModel, { IPost } from "../../models/post.model";
+import Post from "../../models/post.model";
 
 export const getAllPosts = async (req: Request, res: Response) => {
   try {
-    const posts: IPost[] = await PostModel.find(); // Obtener todas las publicaciones desde la base de datos
-    res.render("home", { posts }); 
+    const posts = await Post.find();
+    res.render('posts/index', { posts });
   } catch (error) {
-    res.status(500).send("Error al obtener las publicaciones");
+    res.status(500).send('Error');
   }
 };
 
