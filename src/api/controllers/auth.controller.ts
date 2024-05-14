@@ -28,11 +28,15 @@ export const apiLogin = async (req: Request, res: Response) => {
     expiresIn: "30d",
   });
   res.cookie("authcookie", token, { maxAge: 900000, httpOnly: true });
-  res.status(200).send("Inicio de sesión exitoso");
+  res.cookie("userId", user.id, { maxAge: 900000, httpOnly: true });
+
+  res.status(200).json({ message: "Inicio de sesión exitoso" });
+  ;
 };
 
 export const apiLogout = (req: Request, res: Response) => {
   res.clearCookie("authcookie");
+  res.clearCookie("userId");
   res.status(200).json({ message: "Logged out successfully" });
 };
 
