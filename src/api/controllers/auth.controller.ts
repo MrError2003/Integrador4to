@@ -30,6 +30,7 @@ export const apiLogin = async (req: Request, res: Response) => {
   res.cookie("authcookie", token, { maxAge: 900000, httpOnly: true });
   res.cookie("userId", user.id, { maxAge: 900000, httpOnly: true });
 
+  res.json({ token });
   res.status(200).json({ message: "Inicio de sesión exitoso" });
   ;
 };
