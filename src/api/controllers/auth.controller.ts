@@ -27,10 +27,12 @@ export const apiLogin = async (req: Request, res: Response) => {
   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
     expiresIn: "30d",
   });
-  res.cookie("authcookie", token, { maxAge: 900000, httpOnly: true });
-  res.cookie("userId", user.id, { maxAge: 900000, httpOnly: true });
+  // res.cookie("authcookie", token, { maxAge: 900000, httpOnly: true });
+  // res.cookie("userId", user.id, { maxAge: 900000, httpOnly: true });
 
-  res.status(200).json({ message: "Inicio de sesión exitoso" });
+  //res.status(200).json({ message: "Inicio de sesión exitoso" });
+  
+  res.json({ token })
   ;
 };
 
