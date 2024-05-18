@@ -1,14 +1,26 @@
 import { Request, Response } from "express";
 import Post from "../../models/post.model";
 
+// export const getPosts = async (req: Request, res: Response) => {
+//   try {
+//     const posts = await Post.find();
+//     res.status(200).json(posts);
+//   } catch (error) {
+//     res.status(500).send("Error");
+//   }
+// };
+
 export const getPosts = async (req: Request, res: Response) => {
   try {
+    console.log('Headers:', req.headers);
     const posts = await Post.find();
     res.status(200).json(posts);
   } catch (error) {
+    console.error('Error fetching posts:', error);
     res.status(500).send("Error");
   }
 };
+
 
 export const createPost = async (req: Request, res: Response) => {
   try {
