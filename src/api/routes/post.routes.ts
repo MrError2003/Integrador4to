@@ -6,14 +6,14 @@ import {
   getPosts,
   updatePost,
 } from "../controllers/post.controller";
-import { verifyJWT } from "../controllers/auth.controller";
+// import { verifyJWT } from "../controllers/auth.controller";
 
 const router = express.Router();
 
-router.get("/", verifyJWT, getPosts);
-router.post("/", verifyJWT, createPost);
-router.get("/:id", verifyJWT, getPost);
-router.put("/:id", verifyJWT, updatePost);
-router.delete("/:id", verifyJWT, deletePost);
+router.get("/", getPosts);
+router.post("/", createPost);
+router.get("/:id", getPost);
+router.put("/:id", updatePost);
+router.delete("/:id", deletePost);
 
 export default router;
