@@ -30,6 +30,18 @@ export const apiLogin = async (req: Request, res: Response) => {
   res.cookie("authcookie", token, { maxAge: 900000, httpOnly: true });
   res.cookie("userId", user.id, { maxAge: 900000, httpOnly: true });
   res.status(200).json({ message: "Inicio de sesión exitoso" });
+  ;
+};
+
+export const apiMobileLogin = async (req: Request, res: Response) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email });
+  if (!user || !(await user.comparePassword(password))) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET as string, {
+    expiresIn: "30d",
+  });
 
   res.json({ token })
   ;
