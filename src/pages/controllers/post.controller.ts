@@ -10,5 +10,16 @@ export const getAllPosts = async (req: Request, res: Response) => {
   }
 };
 
+export const getPost = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.params;
+    const post = await Post.findById(id);
+    res.render('comentario/index', { post });
+  } catch (error) {
+    res.status(500).send('Error');
+
+  }
+};
+
 
 
