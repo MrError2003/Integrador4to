@@ -8,15 +8,14 @@ import {
   updateFish,
 
 } from "../controllers/fish.controller";
-import { verifyJWT } from "../controllers/auth.controller";
 
 const router = express.Router();
 
-router.post("/", verifyJWT, createFish);
-router.post("/many", verifyJWT, createManyFish);
-router.delete("/:id", verifyJWT, deleteFish);
-router.get("/:id", verifyJWT, getFish);
-router.get("/", verifyJWT, getFishes);
-router.put("/:id", verifyJWT,  updateFish);
+router.post("/", createFish);
+router.post("/many", createManyFish);
+router.delete("/:id", deleteFish);
+router.get("/:id", getFish);
+router.get("/", getFishes);
+router.put("/:id",  updateFish);
 
 export default router;
