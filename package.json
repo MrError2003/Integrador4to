@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch src --exec ts-node src/app.ts",
-    "start": "node build/app.js",
+    "start": "shx rm -rf build && tsc && shx cp -r src/public build && shx cp -r package.json build && node build/app.js",
     "build": "shx rm -rf build && tsc && shx cp -r src/public build && shx cp -r package.json build"
   },
   "keywords": [],
